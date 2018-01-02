@@ -1,0 +1,14 @@
+<% content_for :google_candlesticks_scripts do %>
+  <%= javascript_include_tag "candlesticks.js" %>
+<% end %>
+
+<h4><%= link_to "Home", root_path %></h4>
+<hr>
+<h5><%=  "Time elapsed: #{@time_elapsed} seconds"%></h5>
+<hr>
+<div class='container'></div>
+<h1>WEX Candlesticks</h1>
+
+<div id="btc_usd_chart_div"></div>
+<div id="eth_usd_chart_div"></div>
+<div id="ltc_usd_chart_div"></div>

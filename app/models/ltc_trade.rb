@@ -1,0 +1,2 @@
+class LtcTrade < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class EthTrade < ApplicationRecord
+end
