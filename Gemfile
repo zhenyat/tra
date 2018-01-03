@@ -80,6 +80,7 @@ gem 'haml-rails'                                # https://github.com/indirect/ha
 
 gem 'zt_btce', :github => 'zhenyat/zt_btce', :branch => 'master'
 gem 'crono'
+gem 'daemons'
 
 #gem 'whenever', :require => false
 #gem "simple_scheduler"

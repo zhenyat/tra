@@ -75,6 +75,7 @@ GEM
     crono (1.1.2)
       activerecord (>= 4.0)
       activesupport (>= 4.0)
+    daemons (1.2.6)
     enum_help (0.0.17)
       activesupport (>= 3.0.0)
     erubi (1.7.0)
@@ -264,6 +265,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   crono
+  daemons
   enum_help
   fusioncharts-rails
   gon

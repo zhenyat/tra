@@ -5,9 +5,10 @@ class GetDataJob < ApplicationJob
   
   def perform
     Coin.all.each do |coin|
-      add_trades coin.pair.name, 200
+      pair_name  = coin.pair.name      
+      add_trades pair_name, 200
+      update_candlesticks pair_name
     end
-    puts "=====  #{Time.now.strftime("%H:%M:%S")} #{BtcTrade.count} | #{EthTrade.count}  | #{LtcTrade.count}"
   end
 end
 

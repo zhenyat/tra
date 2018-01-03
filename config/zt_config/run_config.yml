@@ -17,5 +17,5 @@ debug:
 
 access_restricted:  true
 
-#period:             1.day
-#time_slot:          1.minute
+period:             1.day
+time_slot:          1.minute

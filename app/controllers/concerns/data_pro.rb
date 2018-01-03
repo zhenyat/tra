@@ -122,15 +122,52 @@ module DataPro
   #  26.12.2017   ZT
   ##############################################################################  
   def update_cashed_data  pair_name, data_array
-    filename = set_filename pair_name
+#    filename = set_filename pair_name
+#
+#    if File.exists? filename
+#      candles = File.read filename  # get existing data from the file
+#      candles.shift                 # remove first element
+#      candles.pop                   # remove last  element (to be replaced)
+#      candles << data_array.last    # add updated last element
+#    else
+#      candles = data_array          # initial data to be stored
+#    end
+  end
+  
+  ##############################################################################
+  #  Updates cashed candlesticks data
+  #
+  #  03.01.2018   ZT
+  ##############################################################################
+  def update_candlesticks pair_name
+      data = fetch_cashed_data pair_name
+      
+      data.delete_if {|d| d.first.to_time < time_round((Time.now - (PERIOD + TIME_SLOT)), TIME_SLOT)}   # Remove candles out of range
 
-    if File.exists? filename
-      candles = File.read filename  # get existing data from the file
-      candles.shift                 # remove first element
-      candles.pop                   # remove last  element (to be replaced)
-      candles << data_array.last    # add updated last element
-    else
-      candles = data_array          # initial data to be stored
-    end
+      candle_last = data.pop                     # Remove last candle (cause it could not be finalized)
+      since       = candle_last.first.to_time
+
+      model = set_model_name pair_name
+      trades = model.where('timestamp >= ?', since.to_i).order(:tid)  # Add new trades
+
+      time_frame = []                                 # Limits of time frame (min / max)
+      time_frame = set_time_frame (since - TIME_SLOT), TIME_SLOT
+
+      while time_frame.first <= Time.now.to_i
+
+        candle_trades = trades.where('timestamp >= ? and timestamp < ?', time_frame.first, time_frame.last).order(:timestamp)
+
+        if candle_trades.present?
+          candle = form_candle(candle_trades, time_frame)
+          data.push candle
+        end
+
+        time_frame[0] += TIME_SLOT
+        time_frame[1] += TIME_SLOT
+      end
+
+
+      # Store updated data
+      store_cashed_data pair_name, data
   end
 end
