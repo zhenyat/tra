@@ -73,18 +73,7 @@ module DataPro
     
     data
   end
-  
-  ##############################################################################
-  #  Stores candles array as a 'cash' into a file for a given pair
-  #
-  #  26.12.2017   ZT
-  ##############################################################################  
-  def store_cashed_data pair_name, data_array
-    fin = File.open set_filename(pair_name), "w"
-    fin.puts data_array.to_json
-    fin.close    
-  end
-  
+    
   # Selects data filr to be processed
   def set_filename pair_name
     File.join(Rails.application.root, 'data', pair_name + '.txt')  # aka btc_usb.txt
@@ -110,7 +99,29 @@ module DataPro
     time_frame[1] = time_frame[0] + time_slot
     time_frame
   end
-  
+
+  ##############################################################################
+  #  Stores candles array as a 'cash' into a file for a given pair
+  #
+  #  26.12.2017   ZT
+  ##############################################################################  
+  def store_cashed_data pair_name, data_array
+    fin = File.open set_filename(pair_name), "w"
+    fin.puts data_array.to_json
+    fin.close    
+  end
+
+  def store_last_trades pair_name
+    model = set_model_name pair_name
+    last_trades    = []
+    last_trades[0] = model.last_sold
+    last_trades[1] = model.last_bought
+
+    fout = File.open File.join(Rails.application.root, 'data', pair_name + '_last.txt'), 'w'
+    fout.puts last_trades.to_json
+    fout.close
+  end
+
   # Rounds the given *time* to nearest time *slot*
   def time_round(time, slot = 30.minutes)
     Time.at((time.to_i / slot).round * slot)
@@ -165,7 +176,6 @@ module DataPro
         time_frame[0] += TIME_SLOT
         time_frame[1] += TIME_SLOT
       end
-
 
       # Store updated data
       store_cashed_data pair_name, data

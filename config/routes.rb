@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Crono::Web, at: '/crono'
+  
 #  get 'trades/add_trades'
   get 'trades/index'
   get 'trades/show_trades'

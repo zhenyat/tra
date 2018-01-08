@@ -1,0 +1,1 @@
+[#<EthTrade id: 253121, kind: 0, price: 0.98135e3, amount: 0.20871595e0, tid: 12741692, timestamp: 1515181546, created_at: "2018-01-05 19:46:18", updated_at: "2018-01-05 19:46:18">, #<EthTrade id: 253118, kind: 1, price: 0.983e3, amount: 0.5559109e-1, tid: 12741609, timestamp: 1515181488, created_at: "2018-01-05 19:45:15", updated_at: "2018-01-05 19:45:15">]

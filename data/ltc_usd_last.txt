@@ -1,0 +1,1 @@
+[#<LtcTrade id: 277711, kind: 0, price: 0.24980184e3, amount: 0.51341902e0, tid: 12741567, timestamp: 1515181474, created_at: "2018-01-05 19:45:17", updated_at: "2018-01-05 19:45:17">, #<LtcTrade id: 277714, kind: 1, price: 0.24953863e3, amount: 0.436012203e1, tid: 12741770, timestamp: 1515181605, created_at: "2018-01-05 19:47:17", updated_at: "2018-01-05 19:47:17">]
