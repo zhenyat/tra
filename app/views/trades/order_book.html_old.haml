@@ -1,0 +1,27 @@
+%h4=link_to "Home", root_path
+%hr
+%h3.text-info= "Order Book (Depth): Active Orders for each Pair"
+- if @asks.present? && @bids.present?
+  .container-fluid
+    - for i in 0...@pairs.count
+      %h4= "#{@pairs[i]}"
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th= "Amount"
+            %th= "@Price"
+          %tbody
+            - @asks[i].each do |ask|
+              %tr
+                %td.table-danger= ask.last
+                %td.table-danger= ask.first
+            %tr
+              %td.table-info= "Price Gap (abs / rel)"
+              - gap_abs = (@asks[i].last.first - @bids[i].first.first).round(2)
+              - gap_rel = (gap_abs / @asks[i].last.first * 100).round(3)
+              %td.table-info= "#{gap_abs} / #{gap_rel} %"
+            - @bids[i].each do |bid|
+              %tr
+                %td.table-success= bid.last
+                %td.table-success= bid.first
+

@@ -73,7 +73,11 @@ module DataPro
     
     data
   end
-    
+
+  def get_ticker pair_name
+    ZtBtce.ticker pairs: pair_name 
+  end
+  
   # Selects data filr to be processed
   def set_filename pair_name
     File.join(Rails.application.root, 'data', pair_name + '.txt')  # aka btc_usb.txt

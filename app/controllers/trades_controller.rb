@@ -112,6 +112,20 @@ class TradesController < ApplicationController
     @time_elapsed = (t_finish - t_start).round(2)
   end
 
+  def order_book
+    @pairs = []
+    @asks  = []
+    @bids  = []
+    
+    Coin.all.each do |coin|
+      @pairs << coin.pair.name
+      limit = 20
+      depth = ZtBtce.depth pairs: @pairs.last, limit: limit
+      @asks << depth.first.last['asks'].reverse
+      @bids << depth.first.last['bids']
+    end
+  end
+  
   # Update cashed data files with new candles
   def update_cash
     t_start = Process.clock_gettime(Process::CLOCK_MONOTONIC)

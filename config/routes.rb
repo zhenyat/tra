@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'trades/show_trades'
   get 'trades/candlesticks'
   get 'trades/create_cash'
+  get 'trades/order_book'
   get 'trades/update_cash'
   
   root 'pages#home'
