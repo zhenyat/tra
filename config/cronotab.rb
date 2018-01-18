@@ -13,4 +13,4 @@
 #
 # Crono.perform(TestJob).every 2.days, at: '15:30'
 
-Crono.perform(GetDataJob).with_options(truncate_log: 20).every 1.minute
+Crono.perform(GetDataJob).with_options(truncate_log: 20).every 15.minutes

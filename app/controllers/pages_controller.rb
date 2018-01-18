@@ -11,7 +11,6 @@ class PagesController < ApplicationController
     end
     @secret = "#{asterisks}#{ZtBtce.get_secret[-4..-1]}"
     
-#    @pair_names = []
     @tickers = []
     
     Coin.all.each do |coin|

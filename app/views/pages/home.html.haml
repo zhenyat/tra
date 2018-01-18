@@ -6,7 +6,7 @@
   %p= "SECRET: #{@secret}" if @secret.present?
   %hr
 
-  .row
+  -#.row
     .col-md-2
       %h5= link_to "Add Trades",   trades_index_path
     .col-md-2
@@ -18,9 +18,9 @@
     .col-md-2
       %h5= link_to "Order Book",   trades_order_book_path
 
-  %hr
-  %h3.text-primary= 'Tickers'
-  - if @tickers.present?
+  /%hr
+  /%h3.text-primary= 'Tickers'
+  -# if @tickers.present?
     .container-fluid
       %table.table.table-striped.table-hover
         %thead
@@ -48,3 +48,5 @@
               %td= ticker.first.last['buy']
               %td= ticker.first.last['sell']
               %td= date_from_timestamp ticker.first.last['updated']
+
+  %p= render 'shared/tickers'

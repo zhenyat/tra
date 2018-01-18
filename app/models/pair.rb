@@ -1,3 +1,3 @@
 class Pair < ApplicationRecord
-  has_one :coin
+  has_one  :coin
 end
