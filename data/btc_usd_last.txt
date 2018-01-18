@@ -1,1 +1,0 @@
-[#<BtcTrade id: 405918, kind: 0, price: 0.168e5, amount: 0.113e-1, tid: 12741769, timestamp: 1515181593, created_at: "2018-01-05 19:47:13", updated_at: "2018-01-05 19:47:13">, #<BtcTrade id: 405914, kind: 1, price: 0.16771311e5, amount: 0.59829382e0, tid: 12741783, timestamp: 1515181620, created_at: "2018-01-05 19:47:13", updated_at: "2018-01-05 19:47:13">]

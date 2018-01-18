@@ -44,4 +44,4 @@ vendor/bundle
 # Ignore encrypted secrets key file.
 config/secrets.yml.key
 
-/data     # Data files
+/data/*     # Data files
