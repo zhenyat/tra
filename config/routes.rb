@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :runs
   mount Crono::Web, at: '/crono'
   
 #  get 'trades/add_trades'

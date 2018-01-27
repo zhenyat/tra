@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180116125011) do
+ActiveRecord::Schema.define(version: 20180118145413) do
 
   create_table "btc_trades", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "kind", limit: 1
@@ -73,23 +73,23 @@ ActiveRecord::Schema.define(version: 20180116125011) do
   end
 
   create_table "runs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "pair_id"
+    t.bigint "coin_id"
     t.integer "kind", limit: 1, default: 0, null: false
-    t.decimal "depo", precision: 5, scale: 2, null: false
-    t.decimal "last", precision: 15, scale: 5, null: false
-    t.decimal "start", precision: 4, scale: 2, default: "2.0", null: false
-    t.decimal "overlay", precision: 4, scale: 2, default: "15.0", null: false
-    t.decimal "martingale", precision: 10
+    t.decimal "depo", precision: 10, null: false
+    t.decimal "last", precision: 10, null: false
+    t.float "start", limit: 24, default: 2.0, null: false
+    t.float "overlay", limit: 24, default: 15.0, null: false
+    t.float "martingale", limit: 24
     t.integer "orders", default: 4, null: false
-    t.decimal "profit", precision: 4, scale: 2, default: "5.0", null: false
+    t.float "profit", limit: 24, default: 5.0, null: false
     t.integer "scale", limit: 1, default: 0, null: false
-    t.decimal "stop_loss", precision: 15, scale: 2, null: false
+    t.decimal "stop_loss", precision: 10, null: false
     t.integer "status", limit: 1, default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pair_id"], name: "index_runs_on_pair_id"
+    t.index ["coin_id"], name: "index_runs_on_coin_id"
   end
 
   add_foreign_key "coins", "pairs"
-  add_foreign_key "runs", "pairs"
+  add_foreign_key "runs", "coins"
 end
